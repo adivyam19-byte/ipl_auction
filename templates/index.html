@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPL Auction</title>
+</head>
+
+<body>
+
+<h1>IPL Auction Dashboard</h1>
+
+<table border="1" cellpadding="10">
+
+<tr>
+<th>Player</th>
+<th>Team</th>
+<th>Base Price</th>
+<th>Current Bid</th>
+<th>Place Bid</th>
+</tr>
+
+{% for p in players %}
+
+<tr>
+
+<td>{{p[1]}}</td>
+<td>{{p[2]}}</td>
+<td>{{p[3]}}</td>
+<td>{{p[4]}}</td>
+
+<td>
+
+<form action="/bid/{{p[0]}}" method="post">
+
+<input 
+type="number" 
+name="bid" 
+min="{{p[4] + 1}}" 
+placeholder="Bid higher than {{p[4]}}" 
+required
+>
+
+<button type="submit">Bid</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
