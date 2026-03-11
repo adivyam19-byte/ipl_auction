@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>IPL Auction</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f6f9;
+text-align:center;
+margin:0;
+}
+
+h1{
+background:#1e3a8a;
+color:white;
+padding:20px;
+}
+
+table{
+margin:30px auto;
+border-collapse:collapse;
+width:90%;
+background:white;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+th{
+background:#2563eb;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+background:#f1f5f9;
+}
+
+.price{
+color:red;
+font-weight:bold;
+}
+
+input{
+padding:6px;
+width:130px;
+border-radius:4px;
+border:1px solid #ccc;
+}
+
+button{
+background:#16a34a;
+color:white;
+border:none;
+padding:7px 14px;
+border-radius:4px;
+cursor:pointer;
+}
+
+button:hover{
+background:#15803d;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🏏 IPL Auction Dashboard</h1>
+
+<table>
+
+<tr>
+<th>Player</th>
+<th>Team</th>
+<th>Category</th>
+<th>Base Price</th>
+<th>Current Bid</th>
+<th>Place Bid</th>
+</tr>
+
+{% for p in players %}
+
+<tr>
+
+<td>{{p[1]}}</td>
+<td>{{p[2]}}</td>
+<td><b>{{p[3]}}</b></td>
+<td class="price">₹{{p[4]}}</td>
+<td class="price">₹{{p[5]}}</td>
+
+<td>
+
+<form action="/bid/{{p[0]}}" method="post">
+
+<input 
+type="number" 
+name="bid" 
+min="{{p[5] + 1}}" 
+placeholder="Min {{p[5]+1}}" 
+required
+>
+
+<button type="submit">Bid</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
